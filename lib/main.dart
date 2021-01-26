@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Home Page'),
+      home: MyHomePage(title: 'Flutter Home Page'),
     );
   }
 }
@@ -107,6 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: Icon(Icons.add),
+        backgroundColor: Colors.pink,
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
