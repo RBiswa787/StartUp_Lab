@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "777457099913",
+    "project_id": "startuplabs-df8cb",
+    "storage_bucket": "startuplabs-df8cb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:777457099913:android:f6eed3a6cb0f4b8a6bd258",
+        "android_client_info": {
+          "package_name": "com.deepsubha.startuplabs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "777457099913-47omirnri7ds01goup8qi5921he0bkb7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXhwdsjxRaskuYNgvKkiBtsfxdDjHXjoc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "777457099913-47omirnri7ds01goup8qi5921he0bkb7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
