@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:renameit/Screens/Welcome/welcome_screen.dart';
 import 'package:renameit/constants.dart';
+import 'package:renameit/Screens/welcome_screen.dart';
+import 'package:renameit/Screens/about.dart';
+import 'package:renameit/Screens/contact.dart';
 
 void main() {
   runApp(MyApp());
 }
+
+Size size;
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -17,7 +21,14 @@ class MyApp extends StatelessWidget {
         primaryColor: kprimarylight,
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: WelcomeScreen(),
+      home: SafeArea(
+        child: WelcomeScreen(),
+      ),
+      routes: {
+        '/welcome': (context) => WelcomeScreen(),
+        '/about': (context) => About(),
+        '/contact': (context) => Contact(),
+      },
     );
   }
 }
