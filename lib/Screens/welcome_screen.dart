@@ -1,27 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:renameit/main.dart';
+import 'package:renameit/drawer.dart';
 
 class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     size = MediaQuery.of(context).size;
     return Scaffold(
-        appBar: buildAppBar(context), body: SafeArea(child: Body()));
+      appBar: buildAppBar(context),
+      body: SafeArea(child: Body()),
+      drawer: Drawer(
+        child: Sidebar(),
+      ),
+    );
   }
 
   AppBar buildAppBar(context) {
     return AppBar(
-      automaticallyImplyLeading: false,
-      toolbarHeight: 45,
+      //automaticallyImplyLeading: false,
+      iconTheme: IconThemeData(color: Colors.cyan),
+      toolbarHeight: 55,
       elevation: 10,
       backgroundColor: Colors.indigo[900],
       title: Text("App Name",
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
-            fontSize: 15,
+            fontSize: 17,
           )),
-      actions: [
+      /*actions: [
         FlatButton(
             padding: EdgeInsets.zero,
             onPressed: () {
@@ -33,7 +40,7 @@ class WelcomeScreen extends StatelessWidget {
             child: Text("About",
                 style: TextStyle(
                   color: Colors.cyan,
-                  fontSize: 13,
+                  fontSize: 14,
                 ))),
         FlatButton(
             padding: EdgeInsets.zero,
@@ -43,19 +50,19 @@ class WelcomeScreen extends StatelessWidget {
             child: Text("Contact Us",
                 style: TextStyle(
                   color: Colors.cyan,
-                  fontSize: 13,
+                  fontSize: 14,
                 ))),
         IconButton(
           icon: Icon(
             Icons.person_sharp,
             color: Colors.white,
-            size: 15,
+            size: 20,
           ),
           onPressed: () {
             Navigator.pushNamed(context, '/welcome');
           },
         )
-      ],
+      ],*/
     );
   }
 }

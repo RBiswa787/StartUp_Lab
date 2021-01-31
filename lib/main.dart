@@ -3,6 +3,7 @@ import 'package:renameit/constants.dart';
 import 'package:renameit/Screens/welcome_screen.dart';
 import 'package:renameit/Screens/about.dart';
 import 'package:renameit/Screens/contact.dart';
+import 'package:renameit/drawer.dart';
 
 void main() {
   runApp(MyApp());
@@ -21,9 +22,7 @@ class MyApp extends StatelessWidget {
         primaryColor: kprimarylight,
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: SafeArea(
-        child: WelcomeScreen(),
-      ),
+      home: WelcomeScreen(),
       routes: {
         '/welcome': (context) => WelcomeScreen(),
         '/about': (context) => About(),
