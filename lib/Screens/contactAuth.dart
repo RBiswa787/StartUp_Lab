@@ -2,16 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:renameit/main.dart';
 import 'package:renameit/drawer.dart';
 
-class WelcomeScreen extends StatelessWidget {
+class ContactAuth extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: buildAppBar(context),
-      body: SafeArea(child: Body()),
-      drawer: Drawer(
-        child: Sidebar(),
-      ),
+      body: Body(),
+      drawer: Drawer(child: Sidebar()),
     );
   }
 
@@ -32,10 +29,7 @@ class WelcomeScreen extends StatelessWidget {
         FlatButton(
             padding: EdgeInsets.zero,
             onPressed: () {
-              Navigator.pushNamed(
-                context,
-                '/about',
-              );
+              Navigator.pushNamed(context, '/about');
             },
             child: Text("About",
                 style: TextStyle(
@@ -70,37 +64,27 @@ class WelcomeScreen extends StatelessWidget {
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          height: size.height * 0.45,
-          //color: Colors.orange,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage(
-                    'assets/images/startup-life-concept-illustration_114360-1068-removebg-preview.png'),
-                fit: BoxFit.cover),
-          ),
-        ),
-        Container(
-          height: size.height * 0.15,
-        ),
-        Container(
-          height: size.height * 0.05,
-          width: size.width * 0.4,
-          color: Colors.orange[400],
-          child: OutlineButton(
-              padding: EdgeInsets.zero,
-              onPressed: () {
-                Navigator.pushNamed(context, '/authentication');
-              },
-              child: Text("Proceed to Login",
+    return Container(
+        padding: EdgeInsets.all(65),
+        height: size.height * 0.5,
+        color: Colors.white,
+        child: Column(
+            //mainAxisAlignment: MainAxisAlignment.center,
+            //crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text("Contact Us",
                   style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 14,
-                  ))),
-        )
-      ],
-    );
+                      fontSize: 24,
+                      color: Colors.blue[900],
+                      fontWeight: FontWeight.bold)),
+              const ListTile(
+                  leading: Icon(Icons.email_sharp, size: 25),
+                  title: Text("abc@gmail.com",
+                      style: TextStyle(fontSize: 16, color: Colors.orange))),
+              const ListTile(
+                  leading: Icon(Icons.phone_android_rounded, size: 25),
+                  title: Text("1800-000-xx",
+                      style: TextStyle(fontSize: 16, color: Colors.orange))),
+            ]));
   }
 }
