@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:renameit/globaluser.dart';
 import 'package:renameit/main.dart';
@@ -47,10 +48,38 @@ class SidebarAuth extends StatelessWidget {
       padding: EdgeInsets.zero,
       children: <Widget>[
         DrawerHeader(
-          child: Text(
-            'Welcome! \n $username',
-            style: TextStyle(color: Colors.grey[800], fontSize: 24),
-            textAlign: TextAlign.center,
+          child: Column(
+            children: [
+              Text(
+                'Welcome! \n $username',
+                style: TextStyle(color: Colors.grey[800], fontSize: 24),
+                textAlign: TextAlign.center,
+              ),
+              Container(
+                height: size.height * 0.04,
+              ),
+              Container(
+                  width: size.width * 0.3,
+                  height: size.height * 0.05,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(7),
+                    color: Colors.orange,
+                  ),
+                  child: MaterialButton(
+                    onPressed: () async {
+                      await FirebaseAuth.instance.signOut();
+                      username = null;
+                      team = false;
+                      Navigator.pushNamed(context, '/authentication');
+                    },
+                    child: Text("Sign Out",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        )),
+                  )),
+            ],
           ),
           decoration: BoxDecoration(
             color: Colors.white30,
