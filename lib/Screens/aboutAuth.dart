@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:renameit/Screens/drawerauth_customer.dart';
 import 'package:renameit/main.dart';
-import 'package:renameit/drawer.dart';
 
 //import 'package:renameit/Screens/welcome_screen.dart';
 class AboutAuth extends StatelessWidget {
@@ -10,21 +10,21 @@ class AboutAuth extends StatelessWidget {
     return Scaffold(
       appBar: buildAppBar(context),
       body: Body(),
-      drawer: Drawer(child: Sidebar()),
+      drawer: Drawer(child: SidebarAfterAuth()),
     );
   }
 
   AppBar buildAppBar(context) {
     return AppBar(
-      iconTheme: IconThemeData(color: Colors.cyan),
+      iconTheme: IconThemeData(color: Colors.black),
       toolbarHeight: 55,
       elevation: 10,
-      backgroundColor: Colors.indigo[900],
-      title: Text("App Name",
+      backgroundColor: Colors.blueGrey,
+      title: Text("StartUp Labs",
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
-            fontSize: 17,
+            fontSize: 20,
           )),
       /*actions: [
         FlatButton(

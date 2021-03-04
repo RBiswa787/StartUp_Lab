@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         '/contact': (context) => Contact(),
         '/authentication': (context) => Authentication(),
         '/aboutauth': (context) => AboutAuth(),
-        'contactauth': (context) => ContactAuth(),
+        '/contactauth': (context) => ContactAuth(),
       },
     );
   }

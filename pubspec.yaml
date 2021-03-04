@@ -31,6 +31,7 @@ dependencies:
   flutter_svg: ^0.17.4
   firebase_auth: ^0.20.0+1
   cloud_firestore: ^0.16.0
+  carousel_slider: ^3.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -57,6 +58,13 @@ flutter:
       - assets/images/startup-life-concept-illustration_114360-1068-removebg-preview.png
       - assets/images/market-launch-concept-illustration_114360-1498-removebg-preview.png
       - assets/images/colorful-festive-balloons-design-vectors_53876-58079.jpg
+      - assets/images/front-view-vase-paint-tools_23-2148643192.jpg
+      - assets/images/hands-make-potter-decorative-pattern-earthenware_35076-3898.jpg
+      - assets/images/top-view-jars-with-preserved-vegetables_23-2148606774.jpg
+      - assets/images/corporate-portrait-office-workers-employees_74855-5471.jpg
+      - assets/images/dirty-hands-modeling-clay-potter-s-wheel_23-2148679150.jpg
+      - assets/images/high-view-person-knitting-concept_23-2148643229.jpg
+      - assets/images/wicker-baskets-sale_1398-2317.jpg
       - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see

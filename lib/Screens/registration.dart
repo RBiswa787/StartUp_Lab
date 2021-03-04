@@ -106,7 +106,7 @@ class _RegisterState extends State<Register> {
               child: MaterialButton(
                 onPressed: () async {
                   bool shouldNavigate = await register(_emailField.text,
-                      _passField.text, _nameField.text, _check);
+                      _passField.text, _nameField.text, _check, false);
                   if (shouldNavigate) {
                     Navigator.push(
                         context,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:renameit/Screens/drawerauth_customer.dart';
 import 'package:renameit/main.dart';
-import 'package:renameit/drawer.dart';
 
 class ContactAuth extends StatelessWidget {
   @override
@@ -8,22 +8,22 @@ class ContactAuth extends StatelessWidget {
     return Scaffold(
       appBar: buildAppBar(context),
       body: Body(),
-      drawer: Drawer(child: Sidebar()),
+      drawer: Drawer(child: SidebarAfterAuth()),
     );
   }
 
   AppBar buildAppBar(context) {
     return AppBar(
       //automaticallyImplyLeading: false,
-      iconTheme: IconThemeData(color: Colors.cyan),
+      iconTheme: IconThemeData(color: Colors.black),
       toolbarHeight: 55,
       elevation: 10,
-      backgroundColor: Colors.indigo[900],
-      title: Text("App Name",
+      backgroundColor: Colors.blueGrey[600],
+      title: Text("StartUp Labs",
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
-            fontSize: 17,
+            fontSize: 20,
           )),
       /*actions: [
         FlatButton(

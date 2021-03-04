@@ -1,7 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:renameit/Screens/Customer.dart';
+import 'package:renameit/Screens/Team.dart';
+import 'package:renameit/Screens/newpage.dart';
+import 'package:renameit/Screens/teamdash_dlv.dart';
 import 'package:renameit/main.dart';
 
-class Sidebar extends StatelessWidget {
+import '../globaluser.dart';
+
+class SidebarAfterAuthDlv extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,10 +22,10 @@ class Sidebar extends StatelessWidget {
                 children: [
                   Container(
                     color: Colors.blueGrey[800],
-                    height: size.height * 0.07,
+                    height: size.height * 0.02,
                   ),
                   ListTile(
-                    title: Text("Logged in as Guest",
+                    title: Text("$username",
                         style: TextStyle(
                           fontSize: 19,
                           fontWeight: FontWeight.bold,
@@ -32,6 +39,30 @@ class Sidebar extends StatelessWidget {
                       radius: 25,
                     ),
                   ),
+                  Container(
+                    height: size.height * 0.01,
+                  ),
+                  Container(
+                      width: size.width * 0.3,
+                      height: size.height * 0.05,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(7),
+                        color: Colors.redAccent,
+                      ),
+                      child: MaterialButton(
+                        onPressed: () async {
+                          await FirebaseAuth.instance.signOut();
+                          username = null;
+                          team = false;
+                          Navigator.pushNamed(context, '/authentication');
+                        },
+                        child: Text("Sign Out",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                            )),
+                      )),
                   Container(
                     height: size.height * 0.03,
                   ),
@@ -53,14 +84,24 @@ class Sidebar extends StatelessWidget {
               size: 30,
               color: Colors.white,
             ),
-            title: Text("Home",
+            title: Text("Go to Dashboard",
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 19,
                 )),
             onTap: () {
-              Navigator.pushNamed(context, '/welcome');
+              if (team == false) {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CustomerHomeView()));
+              } else {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => TeamDashboardDlv()));
+              }
             },
           ),
           ListTile(
@@ -77,7 +118,7 @@ class Sidebar extends StatelessWidget {
                   fontSize: 19,
                 )),
             onTap: () {
-              Navigator.pushNamed(context, '/about');
+              Navigator.pushNamed(context, '/aboutauth');
             },
           ),
           ListTile(
@@ -94,7 +135,25 @@ class Sidebar extends StatelessWidget {
                   fontSize: 19,
                 )),
             onTap: () {
-              Navigator.pushNamed(context, '/contact');
+              Navigator.pushNamed(context, '/contactauth');
+            },
+          ),
+          ListTile(
+            contentPadding: EdgeInsets.only(left: 20, right: 20),
+            leading: Icon(
+              Icons.info_outline,
+              size: 30,
+              color: Colors.white,
+            ),
+            title: Text("New Page",
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 19,
+                )),
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => NewPage()));
             },
           ),
         ],

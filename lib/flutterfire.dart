@@ -43,8 +43,13 @@ Future<bool> signIn(String email, String pass) async {
   }
 }
 
-Future<bool> register(String email, String pass, String name, bool val) async {
-  Map<String, dynamic> registration_data = {"name": name, "role": val};
+Future<bool> register(
+    String email, String pass, String name, bool val, bool reg) async {
+  Map<String, dynamic> registration_data = {
+    "name": name,
+    "role": val,
+    "reg": reg
+  };
   try {
     await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: pass);
