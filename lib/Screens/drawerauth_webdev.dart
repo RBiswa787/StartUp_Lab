@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:renameit/Screens/Customer.dart';
 import 'package:renameit/Screens/Team.dart';
+import 'package:renameit/Screens/myprofile_web.dart';
 import 'package:renameit/Screens/teamdash_wdev.dart';
 import 'package:renameit/main.dart';
 
@@ -101,6 +102,24 @@ class SidebarAfterAuthWeb extends StatelessWidget {
                     MaterialPageRoute(
                         builder: (context) => TeamDashboardWeb()));
               }
+            },
+          ),
+          ListTile(
+            contentPadding: EdgeInsets.only(left: 20, right: 20),
+            leading: Icon(
+              Icons.account_circle_rounded,
+              size: 30,
+              color: Colors.white,
+            ),
+            title: Text("My Profile",
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 19,
+                )),
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => MyProf_Web()));
             },
           ),
           ListTile(

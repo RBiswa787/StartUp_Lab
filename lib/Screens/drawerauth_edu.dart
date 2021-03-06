@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:renameit/Screens/Customer.dart';
 import 'package:renameit/Screens/Team.dart';
+import 'package:renameit/Screens/add_course.dart';
+import 'package:renameit/Screens/course_edu.dart';
 import 'package:renameit/Screens/teamdash_edu.dart';
 import 'package:renameit/main.dart';
 
@@ -101,6 +103,24 @@ class SidebarAfterAuthEdu extends StatelessWidget {
                     MaterialPageRoute(
                         builder: (context) => TeamDashboardEdu()));
               }
+            },
+          ),
+          ListTile(
+            contentPadding: EdgeInsets.only(left: 20, right: 20),
+            leading: Icon(
+              Icons.info_outline,
+              size: 30,
+              color: Colors.white,
+            ),
+            title: Text("Add/Edit Course",
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 19,
+                )),
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Course_Edu()));
             },
           ),
           ListTile(
