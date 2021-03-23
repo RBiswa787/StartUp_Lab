@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:renameit/Screens/drawerauth_edu.dart';
+import 'package:renameit/globaluser.dart';
 import 'package:renameit/main.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 //import 'course_data_model.dart';
@@ -9,16 +12,24 @@ class Course_Edu extends StatefulWidget {
   _Course_EduState createState() => _Course_EduState();
 }
 
+//List chapter;
+
 class _Course_EduState extends State<Course_Edu> {
-  List chapter = [
-    init_obj,
-  ];
   TextEditingController _name = TextEditingController();
   TextEditingController _vid = TextEditingController();
   TextEditingController _desc = TextEditingController();
+  /*@override
+  void initState() {
+    if (data_set != null) {
+      chapter.add(data_set);
+    }
+    super.initState();
+  }*/
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        //backgroundColor: Colors.yellow,
         appBar: buildAppBar(context),
         drawer: Drawer(
           child: SidebarAfterAuthEdu(),
@@ -86,10 +97,23 @@ class _Course_EduState extends State<Course_Edu> {
                     actions: <Widget>[
                       FlatButton(
                           onPressed: () {
-                            CourseData obj;
-                            obj.UpdateData(_name.toString(), _vid.toString(),
-                                _desc.toString());
-                            chapter.add(obj);
+                            Map<String, String> datamap = {
+                              "video_id": "",
+                              "course_name": "",
+                              "course_desc": ""
+                            };
+                            datamap["video_id"] = _vid.text;
+                            datamap["course_name"] = _name.text;
+                            datamap["course_desc"] = _desc.text;
+                            chapter.add(datamap);
+                            Map<String, dynamic> finaldb = {
+                              "chapters": chapter
+                            };
+                            FirebaseFirestore.instance
+                                .collection("Courses")
+                                .doc(FirebaseAuth.instance.currentUser.uid)
+                                .set(finaldb);
+                            setState(() {});
                             Navigator.of(context).pop();
                           },
                           child: Text("Add"))
@@ -115,19 +139,19 @@ class _Course_EduState extends State<Course_Edu> {
                   itemBuilder: (BuildContext context, int index) {
                     YoutubePlayerController _vidcontroller =
                         YoutubePlayerController(
-                      initialVideoId: '${chapter[index].video_id}',
+                      initialVideoId: '${chapter[index]["video_id"]}',
                       flags: YoutubePlayerFlags(
                         autoPlay: false,
                         mute: false,
                       ),
                     );
                     return Card(
-                      elevation: 15,
-                      color: Colors.cyan,
+                      //elevation: 7,
+                      color: Colors.cyan[400],
                       child: ListTile(
                         minVerticalPadding: 10,
                         title: Text(
-                          "${chapter[index].course_name}",
+                          "${chapter[index]["course_name"]}",
                           style: TextStyle(
                             fontSize: 17,
                             color: Colors.white,
@@ -146,14 +170,14 @@ class _Course_EduState extends State<Course_Edu> {
                                   Container(height: size.height * 0.007),
                                   Container(
                                     child: Text(
-                                      "${chapter[index].course_desc}",
+                                      "${chapter[index]["course_desc"]}",
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 17,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                  )
+                                  ),
                                 ],
                               );
                             }),
@@ -162,6 +186,10 @@ class _Course_EduState extends State<Course_Edu> {
                     );
                   },
                 ),
+              ),
+              Container(
+                width: size.width,
+                height: size.height * 0.5,
               )
             ],
           ),
@@ -184,26 +212,3 @@ class _Course_EduState extends State<Course_Edu> {
     );
   }
 }
-
-class CourseData {
-  String course_name = "ABC";
-  String video_id = "KfhBsahIk7w";
-  String course_desc = "Description";
-  CourseData() {
-    this.course_name = "ABC";
-    this.course_desc = "Description";
-    this.video_id = "KfhBsahIk7w";
-  }
-  void UpdateData(
-      String course_name_p, String video_id_p, String course_desc_p) {
-    this.course_name = course_name_p;
-    this.video_id = video_id_p;
-    this.course_desc = course_desc_p;
-  }
-}
-
-CourseData init_obj;
-
-//void Initialize() {
-//  init_obj.UpdateData("Chapter Name", "KfhBsahIk7w", "Description");
-//}

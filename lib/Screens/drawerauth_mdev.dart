@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:renameit/Screens/Customer.dart';
 import 'package:renameit/Screens/Team.dart';
+import 'package:renameit/Screens/mdevprojects.dart';
 import 'package:renameit/Screens/teamdash_mdev.dart';
 import 'package:renameit/main.dart';
 
@@ -101,6 +103,59 @@ class SidebarAfterAuthMdev extends StatelessWidget {
                     MaterialPageRoute(
                         builder: (context) => TeamDashboardMDev()));
               }
+            },
+          ),
+          ListTile(
+            contentPadding: EdgeInsets.only(left: 20, right: 20),
+            leading: Icon(
+              Icons.notes_outlined,
+              size: 30,
+              color: Colors.white,
+            ),
+            title: Text("Projects",
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 19,
+                )),
+            onTap: () {
+              FirebaseFirestore.instance
+                  .collection('AppProject')
+                  .get()
+                  .then((QuerySnapshot querySnapshot) => {
+                        querySnapshot.docs.forEach((doc) {
+                          //mprojects.add(doc.id);
+                          FirebaseFirestore.instance
+                              .collection('Projects')
+                              .get()
+                              .then((QuerySnapshot querySnapshot) => {
+                                    querySnapshot.docs.forEach((doc_new) {
+                                      if (doc.id == doc_new.id) {
+                                        mproj_name.add(doc_new["proj_name"]);
+                                        mproj_desc.add(doc_new["proj_desc"]);
+                                        mproj_budget
+                                            .add(doc_new["proj_budget"]);
+                                      }
+                                    })
+                                  });
+                        })
+                      });
+              /*for (var i = 0; i < mprojects.length; i++) {
+                FirebaseFirestore.instance
+                    .collection('Projects')
+                    .get()
+                    .then((QuerySnapshot querySnapshot) => {
+                          querySnapshot.docs.forEach((doc) {
+                            if (mprojects[i] == doc.id) {
+                              mproj_name.add(doc["proj_name"]);
+                              mproj_desc.add(doc["proj_desc"]);
+                              mproj_desc.add(doc["proj_budget"]);
+                            }
+                          })
+                        });
+              }*/
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => MDevProjects()));
             },
           ),
           ListTile(

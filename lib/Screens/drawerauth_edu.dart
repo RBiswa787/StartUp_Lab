@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:renameit/Screens/Customer.dart';
@@ -119,6 +120,22 @@ class SidebarAfterAuthEdu extends StatelessWidget {
                   fontSize: 19,
                 )),
             onTap: () {
+              //Get_Course_Data();
+              FirebaseFirestore.instance
+                  .collection('Courses')
+                  .doc(FirebaseAuth.instance.currentUser.uid)
+                  .get()
+                  .then((DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists) {
+                  dataset = documentSnapshot.data();
+                  //chapter.add(dataset[0]);
+                  chapter = documentSnapshot.data()["chapters"];
+                  print(chapter[0]);
+                } else {
+                  print('Document does not exist on the database');
+                }
+              });
+
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => Course_Edu()));
             },

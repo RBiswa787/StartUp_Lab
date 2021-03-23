@@ -1,7 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:renameit/Screens/Customer.dart';
 import 'package:renameit/Screens/Team.dart';
+import 'package:renameit/Screens/applied.dart';
+import 'package:renameit/Screens/cust_proj.dart';
+import 'package:renameit/Screens/mycontacts.dart';
+import 'package:renameit/Screens/new_proj.dart';
+import 'package:renameit/Screens/pottery.dart';
 import 'package:renameit/main.dart';
 
 import '../globaluser.dart';
@@ -98,6 +104,182 @@ class SidebarAfterAuth extends StatelessWidget {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => TeamHomeView()));
               }
+            },
+          ),
+          ListTile(
+              contentPadding: EdgeInsets.only(left: 20, right: 20),
+              leading: Icon(
+                Icons.fact_check_outlined,
+                size: 30,
+                color: Colors.white,
+              ),
+              title: Text("My Project",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 19,
+                  )),
+              onTap: () {
+                FirebaseAuth user = FirebaseAuth.instance;
+                dynamic uid;
+                uid = user.currentUser.uid;
+                CollectionReference docRef = db.collection("Projects");
+                docRef
+                    .doc(uid)
+                    .get()
+                    .then((DocumentSnapshot documentSnapshot) => {
+                          if (documentSnapshot.exists)
+                            {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => CustomerProject()))
+                            }
+                          else
+                            {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => NewProject()))
+                            }
+                        });
+              }),
+          ListTile(
+            contentPadding: EdgeInsets.only(left: 20, right: 20),
+            leading: Icon(
+              Icons.notes_outlined,
+              size: 30,
+              color: Colors.white,
+            ),
+            title: Text("Response",
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 19,
+                )),
+            onTap: () {
+              FirebaseFirestore.instance
+                  .collection('Requests')
+                  .doc(FirebaseAuth.instance.currentUser.uid)
+                  .collection('Applied')
+                  .get()
+                  .then((QuerySnapshot querySnapshot) => {
+                        querySnapshot.docs.forEach((doc) {
+                          //mprojects.add(doc.id);
+                          FirebaseFirestore.instance
+                              .collection('Users')
+                              .get()
+                              .then((QuerySnapshot querySnapshot) => {
+                                    querySnapshot.docs.forEach((doc_new) {
+                                      if (doc.id == doc_new.id) {
+                                        team_name.add(doc_new["name"]);
+                                        team_desc.add(doc_new["proj_desc"]);
+                                      }
+                                    })
+                                  });
+                        })
+                      });
+              /*for (var i = 0; i < mprojects.length; i++) {
+                FirebaseFirestore.instance
+                    .collection('Projects')
+                    .get()
+                    .then((QuerySnapshot querySnapshot) => {
+                          querySnapshot.docs.forEach((doc) {
+                            if (mprojects[i] == doc.id) {
+                              mproj_name.add(doc["proj_name"]);
+                              mproj_desc.add(doc["proj_desc"]);
+                              mproj_desc.add(doc["proj_budget"]);
+                            }
+                          })
+                        });
+              }*/
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Applied()));
+            },
+          ),
+          ListTile(
+            contentPadding: EdgeInsets.only(left: 20, right: 20),
+            leading: Icon(
+              Icons.book_online_outlined,
+              size: 30,
+              color: Colors.white,
+            ),
+            title: Text("My Courses",
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 19,
+                )),
+            onTap: () {
+              /*for (var i = 0; i < mprojects.length; i++) {
+                FirebaseFirestore.instance
+                    .collection('Projects')
+                    .get()
+                    .then((QuerySnapshot querySnapshot) => {
+                          querySnapshot.docs.forEach((doc) {
+                            if (mprojects[i] == doc.id) {
+                              mproj_name.add(doc["proj_name"]);
+                              mproj_desc.add(doc["proj_desc"]);
+                              mproj_desc.add(doc["proj_budget"]);
+                            }
+                          })
+                        });
+              }*/
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => PotteryCourse()));
+            },
+          ),
+          ListTile(
+            contentPadding: EdgeInsets.only(left: 20, right: 20),
+            leading: Icon(
+              Icons.contact_page_outlined,
+              size: 30,
+              color: Colors.white,
+            ),
+            title: Text("My Contacts",
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 19,
+                )),
+            onTap: () {
+              /*FirebaseFirestore.instance
+                  .collection('Requests')
+                  .doc(FirebaseAuth.instance.currentUser.uid)
+                  .collection('Applied')
+                  .get()
+                  .then((QuerySnapshot querySnapshot) => {
+                        querySnapshot.docs.forEach((doc) {
+                          //mprojects.add(doc.id);
+                          FirebaseFirestore.instance
+                              .collection('Users')
+                              .get()
+                              .then((QuerySnapshot querySnapshot) => {
+                                    querySnapshot.docs.forEach((doc_new) {
+                                      if (doc.id == doc_new.id) {
+                                        team_name.add(doc_new["name"]);
+                                        team_desc.add(doc_new["proj_desc"]);
+                                      }
+                                    })
+                                  });
+                        })
+                      });*/
+              /*for (var i = 0; i < mprojects.length; i++) {
+                FirebaseFirestore.instance
+                    .collection('Projects')
+                    .get()
+                    .then((QuerySnapshot querySnapshot) => {
+                          querySnapshot.docs.forEach((doc) {
+                            if (mprojects[i] == doc.id) {
+                              mproj_name.add(doc["proj_name"]);
+                              mproj_desc.add(doc["proj_desc"]);
+                              mproj_desc.add(doc["proj_budget"]);
+                            }
+                          })
+                        });
+              }*/
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => MyContacts()));
             },
           ),
           ListTile(

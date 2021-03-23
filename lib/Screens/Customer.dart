@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 //import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:renameit/Screens/pottery.dart';
 import 'package:renameit/globaluser.dart';
 import 'package:renameit/main.dart';
 import 'package:renameit/Screens/drawerauth_customer.dart';
@@ -77,7 +78,11 @@ class _CustomerHomeViewState extends State<CustomerHomeView> {
                             fit: BoxFit.cover)),
                   ),
                   onTap: () {
-                    print("Tapped");
+                    //print("Tapped");
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PotteryCourse()));
                   },
                 ),
                 InkWell(
