@@ -1,5 +1,4 @@
-# renameit
-StartUp Lab
+# StartUp Lab
 
 How to install?
 1.Clone the repo and open in any code editor with Flutter support.
